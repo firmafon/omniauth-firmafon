@@ -48,6 +48,15 @@ describe OmniAuth::Strategies::Firmafon do
 		end
 	end
 
+	describe "#info" do
+		before do
+			subject.stub(:raw_info) { {'id' => 1, 'name' => 'Karsten Kollega' } }
+		end
+		it "is the id" do
+			expect(subject.info).to eq({:id => 1, :name => 'Karsten Kollega' })
+		end
+	end
+
 	describe "#extra" do
 		before do
 			subject.stub(:raw_info) { { :foo => 'bar' } }
